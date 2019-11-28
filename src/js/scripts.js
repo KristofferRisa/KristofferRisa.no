@@ -373,6 +373,14 @@ $(document).ready(function(){
         scrolltoCv(500);
         selectEdu(4);
     });
+    $('#usn-icon').click(function() {
+        scrolltoCv(500);
+        selectEdu(5);
+    });
+    $('#nde-icon').click(function() {
+        scrolltoCv(500);
+        selectEdu(6);
+    });
 
     $('#cvBtn').click(function() {
         scrolltoCv(500);
@@ -577,6 +585,12 @@ function onYouTubeIframeAPIReady() {
 function selectEdu(index) {
     $('#eduList > li').each(function () { $(this).removeClass('active') });
     $('#eduList > li:nth-child('+index+')').addClass('active');
+}
+
+function scrolltoCv(ms) {
+    $('html, body').animate({
+        scrollTop: $('#cv').offset().top
+    }, ms);
 }
 
 function scrolltoCv(ms) {
