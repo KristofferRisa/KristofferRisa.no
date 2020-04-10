@@ -134,6 +134,22 @@ $(document).ready(function(){
     	$('body').addClass('pointer');
 	}
 	
+	// Slider Initializations
+
+	$('.hero-slider').flexslider({});
+	$('.image-slider').flexslider({ animation: "slide"});
+	$('.testimonials-slider').flexslider({ directionNav: false });
+	
+	// Slide Sizes
+	
+	$('.slider-fullscreen .slides li').each(function(){
+		$(this).css('height', $(window).height());
+	});
+	
+	$('.fullscreen-element').each(function(){
+		$(this).css('height', $(window).height());
+	});
+
 	// Feature Selector
 	
 	$('.selector-tabs li').click(function(){
@@ -342,6 +358,24 @@ $(window).load(function(){
 	$(window).resize(function(){
 		alignVertical();
 		alignBottom();
+	});
+	
+	// Isotope Projects
+	
+	$('.projects-container').isotope({
+	  itemSelector: '.project',
+	  layoutMode: 'fitRows'
+	});
+	
+	$('.filters li').click(function() {
+	  var current = $(this);
+	  
+	  current.siblings('li').removeClass('active');
+	  current.addClass('active');
+	  
+	  var filterValue = current.attr('data-filter');
+	  var container = current.closest('.projects-wrapper').find('.projects-container');
+	  container.isotope({ filter: filterValue });
 	});
 	
 });
