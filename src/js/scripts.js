@@ -11,15 +11,7 @@ $(document).ready(function(){
 			$('.top-bar').removeClass('nav-sticky');
 		}
 	});
-	
-	// Offscreen Nav
-	
-	$('.offscreen-toggle').click(function(){
-		$('.main-container').toggleClass('reveal-nav');
-		$('.offscreen-container').toggleClass('reveal-nav');
-		$('.offscreen-menu .container').toggleClass('reveal-nav');
-	});
-	
+
 	$('.main-container').click(function(){
 		if($(this).hasClass('reveal-nav')){
 			$('.main-container').toggleClass('reveal-nav');
@@ -46,10 +38,6 @@ $(document).ready(function(){
 	if(logoRatio < 2){
 		$('.top-bar .logo').addClass('logo-square');
 	}
-	
-	// Smooth scroll
-	
-	$('.inner-link').smoothScroll({offset: -96, speed: 800});
 	
 	// Mobile Toggle
 	
