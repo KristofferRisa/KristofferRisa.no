@@ -132,7 +132,23 @@ $(document).ready(function(){
        window.scrollReveal = new scrollReveal();
     }else{
     	$('body').addClass('pointer');
-    }
+	}
+	
+	// Slider Initializations
+
+	$('.hero-slider').flexslider({});
+	$('.image-slider').flexslider({ animation: "slide"});
+	$('.testimonials-slider').flexslider({ directionNav: false });
+	
+	// Slide Sizes
+	
+	$('.slider-fullscreen .slides li').each(function(){
+		$(this).css('height', $(window).height());
+	});
+	
+	$('.fullscreen-element').each(function(){
+		$(this).css('height', $(window).height());
+	});
 
 	// Feature Selector
 	
