@@ -38,7 +38,7 @@ $(document).ready(function(){
 	if(logoRatio < 2){
 		$('.top-bar .logo').addClass('logo-square');
 	}
-	
+
 	// Mobile Toggle
 	
 	$('.mobile-toggle').click(function(){
@@ -210,43 +210,8 @@ $(document).ready(function(){
 				$(this).find('.layer-2').css('transform', 'translate(' + -event.pageX /5 + 'px,' + -event.pageY /10+ 'px)');
 			});
 		});
-    }
-    
-    // Map Holder Overlay
+	}
 	
-	$('.map-holder').click(function(){
-		$(this).addClass('on');
-	});
-	
-	$(window).scroll(function(){
-		if($('.map-holder').hasClass('on')){
-			$('.map-holder').removeClass('on');
-		}
-	});
-	
-	// Map Details Holder
-	
-	$('.details-holder').each(function(){
-		$(this).css('height', $(this).width());
-	});
-	
-	$('.details-holder').mouseenter(function(){
-		$(this).closest('.map-overlay').addClass('fade-overlay');
-	}).mouseleave(function(){$(this).closest('.map-overlay').removeClass('fade-overlay');});
-	
-	// Countdown
-	
-	$('.countdown').each(function(){
-		$(this).countdown({until: new Date($(this).attr('data-date'))});
-	});
-	
-	// Twitter Feed
-	
-	if($('#tweets').length){
-		twitterFetcher.fetch($('#tweets').attr('data-widget-id'), '', 5, true, true, true, '', false, handleTweets);
-      
-    }
-    
     // Contact form
     $('form.email-form').submit(function (e) {
 		// return false so form submits through jQuery rather than reloading page.
@@ -397,117 +362,7 @@ $(window).load(function(){
 	  container.isotope({ filter: filterValue });
 	});
 	
-	// Isotope contained feature boxes
-	
-	$('.contained-features-wrapper').isotope({
-	  itemSelector: '.no-pad',
-	  layoutMode: 'masonry',
-	  masonry: {
-		  gutter: 0
-		}
-	});
-	
-	// Instagram Feed
-	
-	if($('.instafeed').length){
-		jQuery.fn.spectragram.accessData = {
-			accessToken: '1406933036.fedaafa.feec3d50f5194ce5b705a1f11a107e0b',
-			clientID: 'fedaafacf224447e8aef74872d3820a1'
-		};
-
-		$('.instafeed').each(function () {
-			$(this).children('ul').spectragram('getUserFeed', {
-				query: $(this).attr('data-user-name')
-			});
-
-		});
-		
-	}
-	
-    if($('#tweets').length){
-    	$('#tweets').flexslider({ directionNav: false, controlNav: false });
-    }
-    
-    // Remove Loader
-    
-    $('.loader').css('opacity', 0);
-    setTimeout(function(){$('.loader').hide();}, 600);
-    
-	// Mailchimp/Campaign Monitor Mail List Form Scripts
-	$('form.mail-list-signup').on('submit', function(){
-		
-		var iFrame = $(this).closest('section, header').find('iframe.mail-list-form'),
-		thisForm 		= $(this).closest('.mail-list-signup'),
-		userEmail 		= $(this).find('.signup-email-field').val(),
-		userFullName 	= $(this).find('.signup-name-field').val(),
-		userFirstName 	= $(this).find('.signup-first-name-field').val(),
-		userLastName 	= $(this).find('.signup-last-name-field').val(),
-		error			= 0;
-		
-		$(thisForm).find('.validate-required').each(function(){
-			if($(this).val() === ''){
-				$(this).addClass('field-error');
-				error = 1;
-			}
-			else{
-				$(this).removeClass('field-error');
-			}
-		});
-		
-		$(thisForm).find('.validate-email').each(function(){
-			if(!(/(.+)@(.+){2,}\.(.+){2,}/.test($(this).val()))){
-				$(this).addClass('field-error');
-				error = 1;
-			}
-			else{
-				$(this).removeClass('field-error');
-			}
-		});
-		
-		if(error === 0){
-			iFrame.contents().find('#mce-EMAIL, #fieldEmail').val(userEmail);
-			iFrame.contents().find('#mce-LNAME, #fieldLastName').val(userLastName);
-			iFrame.contents().find('#mce-FNAME, #fieldFirstName').val(userFirstName);
-			iFrame.contents().find('#mce-FNAME, #fieldName').val(userFullName);		
-			iFrame.contents().find('form').attr('target', '_blank').submit();
-		}
-		return false;
-	});
-	
-	// Blog Masonry
-	
-	$('.blog-masonry-container').isotope({
-	  itemSelector: '.blog-masonry-item',
-	  layoutMode: 'masonry'
-	});
-	
-	$('.blog-filters li').click(function() {
-	  var current = $(this);
-	  
-	  current.siblings('li').removeClass('active');
-	  current.addClass('active');
-	  
-	  var filterValue = current.attr('data-filter');
-	  var container = current.closest('.blog-masonry').find('.blog-masonry-container');
-	  container.isotope({ filter: filterValue });
-	});
-
-
-
 });
-
-function handleTweets(tweets){
-          var x = tweets.length;
-          var n = 0;
-          var element = document.getElementById('tweets');
-          var html = '<ul class="slides">';
-          while(n < x) {
-            html += '<li>' + tweets[n] + '</li>';
-            n++;
-          }
-          html += '</ul>';
-          element.innerHTML = html;
-    }
 
 function alignVertical(){
 
@@ -529,28 +384,6 @@ function alignBottom(){
 		var padAmount = (parentHeight) - (height) - 32;
 		that.css('padding-top', padAmount);
 	});
-}
-
-// Youtube Background Handling
-
-function onYouTubeIframeAPIReady() {
-	$(window).load(function(){
-		$('.youtube-bg-iframe').each(function(index){
-			$(this).attr('id', 'yt-'+index);
-			var player = new YT.Player($(this).attr('id'), {
-				events: {
-				'onReady': function(){
-					player.mute();
-					player.playVideo();
-				},
-				'onStateChange': function(newState){
-					player.playVideo();
-				}
-			}
-			});
-		});
-	});
-	
 }
 
 function selectEdu(index) {
