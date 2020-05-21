@@ -1,43 +1,17 @@
+// Nav Sticky
+window.onscroll = function() {
+    var nav = document.getElementById('top-bar-container');
+	if ( window.pageYOffset > 500
+		&& document.getElementById('mobile-toggle-menu').offsetParent === null ) {
+        nav.classList.add("nav-sticky");
+    } else {
+        nav.classList.remove("nav-sticky");
+    }
+}
+
 $(document).ready(function(){
 
 	"use strict";
-	
-	// Nav Sticky
-	
-	$(window).scroll(function(){
-		if(window.scrollY > 500 && !$('.mobile-toggle').is(":visible")){
-			$('.top-bar').addClass('nav-sticky');
-		}else{
-			$('.top-bar').removeClass('nav-sticky');
-		}
-	});
-
-	$('.main-container').click(function(){
-		if($(this).hasClass('reveal-nav')){
-			$('.main-container').toggleClass('reveal-nav');
-			$('.offscreen-container').toggleClass('reveal-nav');
-			$('.offscreen-menu .container').toggleClass('reveal-nav');
-		}
-	});
-	
-	// Detect logo dimensions and add correct class
-	
-	var logoImage = $('.top-bar .logo:first-of-type');
-	
-	var theImage = new Image();
-	theImage.src = logoImage.attr("src");
-	
-	var logoWidth = theImage.width;
-	var logoHeight = theImage.height;
-	var logoRatio = logoWidth / logoHeight;
-	
-	if(logoRatio > 2.8){
-		$('.top-bar .logo').addClass('logo-wide');
-	}
-	
-	if(logoRatio < 2){
-		$('.top-bar .logo').addClass('logo-square');
-	}
 
 	// Mobile Toggle
 	
@@ -134,34 +108,7 @@ $(document).ready(function(){
     	$('body').addClass('pointer');
 	}
 	
-	// Slider Initializations
 
-	$('.hero-slider').flexslider({});
-	$('.image-slider').flexslider({ animation: "slide"});
-	$('.testimonials-slider').flexslider({ directionNav: false });
-	
-	// Slide Sizes
-	
-	$('.slider-fullscreen .slides li').each(function(){
-		$(this).css('height', $(window).height());
-	});
-	
-	$('.fullscreen-element').each(function(){
-		$(this).css('height', $(window).height());
-	});
-
-	// Feature Selector
-	
-	$('.selector-tabs li').click(function(){
-		$(this).parent('.selector-tabs').children('li').removeClass('active');
-		$(this).addClass('active');
-		
-		var activeTab = $(this).index() + 1;
-		
-		$(this).closest('.feature-selector').find('.selector-content').children('li').removeClass('active');
-		$(this).closest('.feature-selector').find('.selector-content').children('li:nth-child('+activeTab+')').addClass('active');
-	});
-	
 	// Append .background-image-holder <img>'s as CSS backgrounds
 	
 	$('.background-image-holder').each(function(){
@@ -228,74 +175,7 @@ $(document).ready(function(){
 		});
 	}
 	
-    // Contact form
-    $('form.email-form').submit(function (e) {
-		// return false so form submits through jQuery rather than reloading page.
-		if(e.preventDefault) e.preventDefault(); else e.returnValue = false;
-		
-		console.log('We have a submission...');
-		var thisForm 		= $(this).closest('.email-form'),
-			error 			= 0,
-			originalError 	= thisForm.attr('original-error');
-			
-			if (typeof originalError !== typeof undefined && originalError !== false) {
-				thisForm.find('.form-error').text(originalError); 
-			}
-		       
-		
-		$(thisForm).find('.validate-required').each(function(){
-			if($(this).val() === ''){
-				$(this).addClass('field-error');
-				error = 1;
-			}
-			else{
-				$(this).removeClass('field-error');
-			}
-		});
-		
-		$(thisForm).find('.validate-email').each(function(){
-			if(!(/(.+)@(.+){2,}\.(.+){2,}/.test($(this).val()))){
-				$(this).addClass('field-error');
-				error = 1;
-			}
-			else{
-				$(this).removeClass('field-error');
-			}
-		});
-		
-
-        if (error === 1){
-            $(this).closest('.email-form').find('.form-error').fadeIn(200);
-        }
-		else{
-            jQuery.ajax({
-                type: "POST",
-                url: "mail/mail.php",
-                data: thisForm.serialize(),
-                success: function (response) {
-                	// Swiftmailer always sends back a number representing numner of emails sent.
-					// If this is numeric (not Swift Mailer error text) AND greater than 0 then show success message.
-					if($.isNumeric(response)){
-						if(parseInt(response) > 0){
-							thisForm.find('.form-success').fadeIn(1000);
-							thisForm.find('.form-error').fadeOut(1000);
-							setTimeout(function(){ thisForm.find('.form-success').fadeOut(500); }, 5000);
-						}
-					}
-					// If error text was returned, put the text in the .form-error div and show it.
-					else{
-						// Keep the current error text in a data attribute on the form
-						thisForm.find('.form-error').attr('original-error', thisForm.find('.form-error').text());
-						// Show the error with the returned error text.
-						thisForm.find('.form-error').text(response).fadeIn(1000);
-						thisForm.find('.form-success').fadeOut(1000);
-					}
-                }
-            });
-        }
-		return false;
-    });
-	
+   
 	
 	// Expanding Lists (updated in Pivot 1.4.0)
 	
@@ -342,13 +222,9 @@ $(document).ready(function(){
         $('html, body').animate({
             scrollTop: $('#Career').offset().top
         }, 500);
-    });
-});
-
-$(window).load(function(){
-
-  "use strict";
-  	
+	});
+	
+	  	
   
 	// Align Elements Vertically
 	
@@ -359,26 +235,8 @@ $(window).load(function(){
 		alignVertical();
 		alignBottom();
 	});
-	
-	// Isotope Projects
-	
-	$('.projects-container').isotope({
-	  itemSelector: '.project',
-	  layoutMode: 'fitRows'
-	});
-	
-	$('.filters li').click(function() {
-	  var current = $(this);
-	  
-	  current.siblings('li').removeClass('active');
-	  current.addClass('active');
-	  
-	  var filterValue = current.attr('data-filter');
-	  var container = current.closest('.projects-wrapper').find('.projects-container');
-	  container.isotope({ filter: filterValue });
-	});
-	
 });
+
 
 function alignVertical(){
 
