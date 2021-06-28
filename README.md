@@ -1,4 +1,12 @@
 # KristofferRisa.no
-[![Build status](https://dev.azure.com/kristofferrisa/KristofferRisa.no/_apis/build/status/KristofferRisa.no-CI)](https://dev.azure.com/kristofferrisa/KristofferRisa.no/_build/latest?definitionId=22)
+Source code for the website kristofferrisa.no
 
-Build and deployed using Azure DevOps and hosted on [azure static websites](https://kristofferrisa.no/).
+# CI/CD
+See github actions
+
+# dev
+Open src folder and start "Live server" in VS Code or just edit the files. 
+
+# hosting
+Webpage is hosted on Azure Blob Storage Static Website
+
