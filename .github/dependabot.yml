@@ -1,0 +1,24 @@
+# Standard from KristofferRisa/slipway (docs/dependencies.md). Regenerate with `pnpm slipway dependabot --dir <repo>`.
+# Security fixes come as one grouped PR per ecosystem as soon as an advisory lands, minor and patch as one PR on
+# Mondays, majors one at a time. The repo's team reviews and merges them; a major becomes an issue.
+version: 2
+
+updates:
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "06:00"
+      timezone: Europe/Oslo
+    open-pull-requests-limit: 3
+    labels: [dependencies]
+    commit-message:
+      prefix: "Bump"
+    groups:
+      security:
+        applies-to: security-updates
+        patterns: ["*"]
+      minor-and-patch:
+        applies-to: version-updates
+        patterns: ["*"]
