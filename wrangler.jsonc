@@ -1,0 +1,44 @@
+// kristofferrisa.no: a static site on Cloudflare Workers static assets. No Worker code.
+//
+// The top level is what `wrangler dev` runs locally. CI deploys `env.test` and `env.prod`
+// (.github/workflows/deploy.yml). wrangler does not inherit into named environments,
+// so each one restates assets and routes on purpose.
+//
+// Page views on the prod hostname are counted by vakt-edge, a Worker route
+// (`kristofferrisa.no/*`) that runs in front of this custom domain and fetches it as its origin.
+// Errors and click events come from vakt's browser script, loaded by site/assets/site.js.
+{
+  "$schema": "https://unpkg.com/wrangler@4.158.0/config-schema.json",
+  "name": "kristofferrisa-no-local",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": "site",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  },
+  "workers_dev": false,
+  "env": {
+    "test": {
+      "name": "kristofferrisa-no-test",
+      "assets": {
+        "directory": "site",
+        "html_handling": "auto-trailing-slash",
+        "not_found_handling": "404-page"
+      },
+      "workers_dev": false,
+      "preview_urls": false,
+      "routes": [{ "pattern": "test.kristofferrisa.no", "custom_domain": true }]
+    },
+    "prod": {
+      "name": "kristofferrisa-no",
+      "assets": {
+        "directory": "site",
+        "html_handling": "auto-trailing-slash",
+        "not_found_handling": "404-page"
+      },
+      "workers_dev": false,
+      "preview_urls": false,
+      "routes": [{ "pattern": "kristofferrisa.no", "custom_domain": true }]
+    }
+  }
+}

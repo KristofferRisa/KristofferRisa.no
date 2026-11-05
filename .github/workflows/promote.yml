@@ -1,0 +1,65 @@
+name: Promote test → prod
+
+# `test` is the trunk; `prod` is what is live. Run this from the `test` branch.
+# One job: it waits for the approval on the `prod` environment, checks that the
+# commit deployed to test, deploys it to prod, verifies, and only then
+# fast-forwards `prod` to it, so the branch never runs ahead of what is live.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: promote
+  cancel-in-progress: false
+
+env:
+  WRANGLER: wrangler@4.158.0
+
+jobs:
+  promote:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    environment:
+      name: prod
+      url: https://kristofferrisa.no
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+    steps:
+      - if: github.ref_name != 'test'
+        run: echo "::error::Run this workflow from the test branch." && exit 1
+
+      - name: The commit must have deployed to test (or changed nothing deployable)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          ok=$(gh run list --repo "$GITHUB_REPOSITORY" --workflow deploy.yml --branch test --commit "$GITHUB_SHA" --status success --json conclusion --jq length)
+          if [ "$ok" -lt 1 ]; then
+            last=$(gh run list --repo "$GITHUB_REPOSITORY" --workflow deploy.yml --branch test --status success --limit 1 --json headSha --jq '.[0].headSha')
+            [ -n "$last" ] || { echo "::error::No successful Deploy run on test yet."; exit 1; }
+            gh api "repos/$GITHUB_REPOSITORY/compare/$last...$GITHUB_SHA" --jq '.files[].filename' > changed.txt
+            if grep -qE '^(site/|wrangler\.jsonc$)' changed.txt; then
+              echo "::error::$GITHUB_SHA changes the site but has no successful Deploy run on test."; exit 1
+            fi
+          fi
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+
+      - name: Deploy
+        run: npx --yes "$WRANGLER" deploy --env prod
+
+      - name: Verify
+        run: |
+          for i in 1 2 3 4 5 6; do
+            curl -fsS https://kristofferrisa.no/ | grep -q 'Kristoffer Risa' && exit 0
+            sleep 5
+          done
+          echo "::error::https://kristofferrisa.no did not answer"; exit 1
+
+      - name: Fast-forward prod (refuses if prod has diverged)
+        run: git push origin "$GITHUB_SHA:refs/heads/prod"
