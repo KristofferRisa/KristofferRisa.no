@@ -6,12 +6,13 @@
     <title>Kristoffer Risa — AI- og integrasjonsarkitekt</title>
     <meta
       name="description"
-      content="Kristoffer Risa leder AI-utvikling, adopsjon, governance og gevinstrealisering i REMA 1000. Arkitekt med 15+ år innen integrasjon og retail."
+      content="Kristoffer Risa leder AI-utvikling, adopsjon, governance og gevinstrealisering i REMA 1000. Arkitekt med 15+ år innen integrasjon og retail, og bygger små verktøy på kveldstid."
     />
     <link rel="canonical" href="https://kristofferrisa.no/" />
     <link rel="alternate" hreflang="nb" href="https://kristofferrisa.no/" />
     <link rel="alternate" hreflang="en" href="https://kristofferrisa.no/en/" />
     <link rel="alternate" hreflang="x-default" href="https://kristofferrisa.no/" />
+    <link rel="alternate" type="application/rss+xml" title="kristoffer.dev" href="https://kristoffer.dev/index.xml" />
     <meta name="theme-color" content="#0b0b0a" />
     <meta name="color-scheme" content="dark" />
     <meta name="author" content="Kristoffer Risa" />
@@ -19,10 +20,7 @@
     <meta property="og:type" content="profile" />
     <meta property="og:site_name" content="Kristoffer Risa" />
     <meta property="og:title" content="Kristoffer Risa — AI- og integrasjonsarkitekt" />
-    <meta
-      property="og:description"
-      content="AI-utvikling, adopsjon, governance og gevinstrealisering i REMA 1000."
-    />
+    <meta property="og:description" content="AI-utvikling, adopsjon, governance og gevinstrealisering i REMA 1000." />
     <meta property="og:url" content="https://kristofferrisa.no/" />
     <meta property="og:locale" content="nb_NO" />
     <meta property="og:locale:alternate" content="en_US" />
@@ -35,8 +33,9 @@
     <link rel="apple-touch-icon" href="/favicon-96x96.png" />
     <link rel="preload" href="/assets/fonts/instrument-serif-400.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="stylesheet" href="/assets/site.css" />
-    <script src="/assets/site.js" defer></script>
+    <link rel="stylesheet" href="/assets/site.css?v=2" />
+    <script src="/assets/site.js?v=2" defer></script>
+    <script src="/assets/threads.js?v=2" defer></script>
 
     <script type="application/ld+json">
       {
@@ -55,6 +54,7 @@
   </head>
   <body>
     <a class="skip" href="#main">Hopp til innhold</a>
+    <div class="progress" aria-hidden="true"></div>
 
     <header class="site-header">
       <div class="wrap">
@@ -67,50 +67,42 @@
         </a>
         <nav class="nav" aria-label="Hovedmeny">
           <a href="#na">Nå</a>
+          <a class="hide-sm" href="#person">Person</a>
           <a href="#erfaring">Erfaring</a>
-          <a class="hide-sm" href="#kompetanse">Kompetanse</a>
           <a href="#kontakt">Kontakt</a>
+          <button class="kbd-hint" type="button" data-keys-open aria-label="Vis tastatursnarveier"><kbd>?</kbd></button>
           <a class="lang" href="/en/" hreflang="en" lang="en" data-vakt-event="lang" data-vakt-value="en">EN</a>
         </nav>
       </div>
     </header>
 
     <main id="main">
-      <section class="hero wrap" aria-labelledby="hero-title">
-        <p class="eyebrow" data-reveal>AI · Arkitektur · Retail</p>
-        <h1 id="hero-title" data-reveal data-delay="1">
-          <span class="line">Kristoffer Risa</span>
-        </h1>
-        <p class="lead" data-reveal data-delay="2">
-          AI- og integrasjonsarkitekt i REMA 1000. Jeg gjør kunstig intelligens om fra
-          <em>eksperiment</em> til <em>verdi</em> — med styring, adopsjon og målbare gevinster i en av Norges største
-          dagligvarekjeder.
-        </p>
-        <div class="actions" data-reveal data-delay="3">
-          <a class="btn btn-primary" href="#kontakt">Ta kontakt <span class="arrow" aria-hidden="true">→</span></a>
-          <button class="btn" type="button" data-print data-vakt-event="cv_print" data-vakt-value="nb">
-            Last ned CV (PDF)
-          </button>
+      <section class="hero" aria-labelledby="hero-title">
+        <canvas data-threads aria-hidden="true"></canvas>
+        <div class="wrap hero-inner">
+          <p class="hello">Hei, jeg er <span class="wave" aria-hidden="true">👋</span></p>
+          <h1 id="hero-title">
+            <span class="line"><span>Kristoffer</span></span>
+            <span class="line"><span><em>Risa</em>.</span></span>
+          </h1>
+          <p class="lead" data-reveal data-delay="2">
+            Arkitekt i REMA 1000, der jeg siden januar har jobbet med å gjøre kunstig intelligens til noe folk faktisk
+            bruker — og som virksomheten kan måle. Før det: femten år med integrasjoner, butikksystemer og en tur til
+            sjøs. På kveldstid bygger jeg små verktøy, mest for å forstå hvordan ting virker.
+          </p>
+          <div class="actions" data-reveal data-delay="3">
+            <a class="btn btn-primary" href="#kontakt">Ta kontakt <span class="arrow" aria-hidden="true">→</span></a>
+            <button class="btn" type="button" data-print data-vakt-event="cv_print" data-vakt-value="nb">
+              Last ned CV (PDF)
+            </button>
+          </div>
+          <p class="status" data-reveal data-delay="4">
+            <span class="dot" aria-hidden="true"></span>
+            <span><b>Akkurat nå:</b> AI-adopsjon i REMA 1000</span>
+            <span class="sep" aria-hidden="true">/</span>
+            <span>Klokka er <time data-clock>—</time> i Norge</span>
+          </p>
         </div>
-
-        <dl class="hero-meta" data-reveal data-delay="4">
-          <div>
-            <dt>Nå</dt>
-            <dd>REMA 1000 Norge</dd>
-          </div>
-          <div>
-            <dt>Fokus 2026</dt>
-            <dd>AI-utvikling og -adopsjon</dd>
-          </div>
-          <div>
-            <dt>Erfaring</dt>
-            <dd>15+ år innen arkitektur</dd>
-          </div>
-          <div>
-            <dt>Sted</dt>
-            <dd>Norge</dd>
-          </div>
-        </dl>
       </section>
 
       <section class="section" id="na" aria-labelledby="na-title">
@@ -120,8 +112,8 @@
             <div>
               <h2 id="na-title" data-reveal>AI i REMA 1000, <em>fra januar 2026</em></h2>
               <p class="lead" data-reveal>
-                Siden januar har hovedoppgaven min vært å bygge AI-evnen i REMA 1000: fra de første løsningene i
-                produksjon til at teknologien blir tatt i bruk bredt, styres ansvarlig og gir gevinster vi kan måle.
+                Hovedoppgaven min i år har vært å bygge AI-evnen i REMA 1000: fra de første løsningene i produksjon
+                til at teknologien blir tatt i bruk bredt, styres ansvarlig og gir gevinster vi kan måle.
               </p>
             </div>
           </div>
@@ -167,10 +159,71 @@
         </div>
       </section>
 
+      <section class="section" id="person" aria-labelledby="person-title">
+        <div class="wrap">
+          <div class="section-head">
+            <p class="section-index"><b>02</b>Person</p>
+            <div>
+              <h2 id="person-title" data-reveal>Mennesket bak <em>tittelen</em></h2>
+              <p class="lead" data-reveal>
+                Jeg liker ting som henger sammen. Det startet med samband på en fregatt og skrivere hos Ricoh, ble til
+                butikksystemer for tusen butikker, og er i dag språkmodeller som snakker med kjernesystemene i en av
+                Norges største dagligvarekjeder.
+              </p>
+            </div>
+          </div>
+
+          <div class="bento">
+            <article class="card c-sea" data-spotlight data-reveal>
+              <img class="photo" src="/assets/img/fridtjof-nansen.jpg" alt="" width="440" height="330" loading="lazy" decoding="async" />
+              <span class="k">01 — Til sjøs</span>
+              <h3>Det startet på F310</h3>
+              <p>
+                I 2007 mønstret jeg på fregatten KNM Fridtjof Nansen, med artilleri og samband. Der lærte jeg det jeg
+                fortsatt tar med inn i hver arkitektur: systemer må virke når det gjelder.
+              </p>
+              <p class="coords">59°54′ N · 10°44′ E</p>
+              <span class="credit">Foto: Wikimedia Commons</span>
+            </article>
+
+            <article class="card c-keys" data-spotlight data-reveal data-delay="1">
+              <span class="k">02 — Tastaturet først</span>
+              <div class="keycaps" aria-hidden="true"><kbd>g</kbd><kbd>e</kbd><kbd>?</kbd></div>
+              <h3>Neovim og dotfiles</h3>
+              <p>
+                Jeg vil helst aldri ta hånda fra tastaturet. Denne siden har derfor snarveier —
+                <button class="kbd-hint" type="button" data-keys-open>trykk <kbd>?</kbd></button>
+              </p>
+            </article>
+
+            <article class="card c-build" data-spotlight data-reveal>
+              <span class="k">03 — Bygger på kveldstid</span>
+              <p class="terminal" aria-hidden="true">
+                <span>$</span> sky now<br />
+                <span>$</span> powerctl live<br />
+                <span>$</span> cfluence search "arkitektur"
+              </p>
+              <h3>Små verktøy, gjort skikkelig</h3>
+              <p>
+                CLI-er i Go for været, strømmen hjemme og Confluence — og et sett jeg lar AI-agenter jobbe i, i stedet
+                for MCP-servere. Alt ligger åpent på
+                <a href="https://github.com/KristofferRisa" rel="noopener" target="_blank" data-vakt-event="outbound" data-vakt-value="github">GitHub</a>.
+              </p>
+            </article>
+
+            <article class="card c-book" data-spotlight data-reveal data-delay="1">
+              <span class="k">04 — Boka jeg går tilbake til</span>
+              <blockquote>Problemer er uunngåelige. Og de kan løses — med bedre forklaringer.</blockquote>
+              <cite>Min lesning av <i>The Beginning of Infinity</i>, David Deutsch</cite>
+            </article>
+          </div>
+        </div>
+      </section>
+
       <section class="section" id="erfaring" aria-labelledby="erfaring-title">
         <div class="wrap">
           <div class="section-head">
-            <p class="section-index"><b>02</b>Erfaring</p>
+            <p class="section-index"><b>03</b>Erfaring</p>
             <h2 id="erfaring-title" data-reveal>Karriere</h2>
           </div>
 
@@ -215,7 +268,10 @@
                 <span class="org">Direktoratet for e-helse</span>
               </div>
               <div class="desc">
-                <p>Arkitekt i prosjekter og programmer for nasjonale e-helseløsninger.</p>
+                <p>
+                  Arkitekt i prosjekter og programmer for nasjonale e-helseløsninger, blant annet meldingsutveksling i
+                  helsesektoren over AMQP.
+                </p>
               </div>
             </li>
             <li class="role" data-reveal>
@@ -239,7 +295,10 @@
                 <span class="org">Ricoh Norge</span>
               </div>
               <div class="desc">
-                <p>Vedlikehold av produksjonsskrivere og løsninger for dokumenthåndtering, skanning og OCR.</p>
+                <p>
+                  Feltservice på multifunksjons- og produksjonsskrivere, og opplæring i Ricohs løsninger for utskrift,
+                  skanning og OCR.
+                </p>
               </div>
             </li>
             <li class="role" data-reveal>
@@ -256,10 +315,60 @@
         </div>
       </section>
 
+      <section class="section" id="skriver" aria-labelledby="skriver-title">
+        <div class="wrap">
+          <div class="section-head">
+            <p class="section-index"><b>04</b>Skriver</p>
+            <div>
+              <h2 id="skriver-title" data-reveal>Notater fra <em>verkstedet</em></h2>
+              <p class="lead" data-reveal>
+                På kristoffer.dev skriver jeg om AI-agenter, utvikleroppsett og det jeg lærer underveis. På engelsk,
+                og som regel med kode.
+              </p>
+            </div>
+          </div>
+          <ul class="posts">
+            <li data-reveal>
+              <a href="https://kristoffer.dev/~/writing/claude-code-status-line/" rel="noopener" target="_blank" hreflang="en" data-vakt-event="post" data-vakt-value="claude-code-status-line">
+                <time datetime="2026-09-27">27. sep 2026</time>
+                <h3 lang="en">A Claude Code Status Line That Tells Me When I'll Run Out</h3>
+                <span class="go" aria-hidden="true">↗</span>
+                <p>Statuslinja som et lite dashbord: vær fra min egen CLI, grenser som kjenner tempoet mitt, og en regning som stemmer.</p>
+              </a>
+            </li>
+            <li data-reveal>
+              <a href="https://kristoffer.dev/~/writing/cli-over-mcp/" rel="noopener" target="_blank" hreflang="en" data-vakt-event="post" data-vakt-value="cli-over-mcp">
+                <time datetime="2026-05-15">15. mai 2026</time>
+                <h3 lang="en">CLI-first AI Agents: Why I Build Small Tools Instead of MCP Servers</h3>
+                <span class="go" aria-hidden="true">↗</span>
+                <p>Hvorfor jeg gir AI-agenter små, isolerte verktøy i Go å jobbe i, i stedet for MCP-servere.</p>
+              </a>
+            </li>
+            <li data-reveal>
+              <a href="https://kristoffer.dev/~/writing/hardened-linux-environment-for-openclaw-ai-agent/" rel="noopener" target="_blank" hreflang="en" data-vakt-event="post" data-vakt-value="hardened-linux-ai-agent">
+                <time datetime="2026-02-05">5. feb 2026</time>
+                <h3 lang="en">Building a Hardened Linux Environment for Your AI Agent</h3>
+                <span class="go" aria-hidden="true">↗</span>
+                <p>En autonom AI-assistent på en egen server hjemme — med isolasjon, nettverkskontroll og egne verktøy.</p>
+              </a>
+            </li>
+            <li data-reveal>
+              <a href="https://kristoffer.dev/~/writing/sparks-from-ndc-events-as-apis/" rel="noopener" target="_blank" hreflang="en" data-vakt-event="post" data-vakt-value="events-as-apis">
+                <time datetime="2025-05-28">28. mai 2025</time>
+                <h3 lang="en">Spark from NDC Oslo: Events as Internal APIs</h3>
+                <span class="go" aria-hidden="true">↗</span>
+                <p>En gnist fra NDC Oslo som enhver integrasjonsarkitekt bør ta med seg: behandle hendelser som interne API-er.</p>
+              </a>
+            </li>
+          </ul>
+          <a class="more" href="https://kristoffer.dev/~/writing/" rel="noopener" target="_blank" data-vakt-event="outbound" data-vakt-value="blog">Alle innlegg på kristoffer.dev ↗</a>
+        </div>
+      </section>
+
       <section class="section" id="kompetanse" aria-labelledby="kompetanse-title">
         <div class="wrap">
           <div class="section-head">
-            <p class="section-index"><b>03</b>Kompetanse</p>
+            <p class="section-index"><b>05</b>Kompetanse</p>
             <h2 id="kompetanse-title" data-reveal>Der teknologi møter <em>virksomhet</em></h2>
           </div>
 
@@ -298,7 +407,7 @@
       <section class="section" id="utdanning" aria-labelledby="utdanning-title">
         <div class="wrap">
           <div class="section-head">
-            <p class="section-index"><b>04</b>Utdanning</p>
+            <p class="section-index"><b>06</b>Utdanning</p>
             <h2 id="utdanning-title" data-reveal>Utdanning</h2>
           </div>
           <div class="edu">
@@ -320,6 +429,9 @@
         <div class="wrap">
           <p class="eyebrow" data-reveal>Kontakt</p>
           <h2 id="kontakt-title" data-reveal>La oss <em>snakke</em>.</h2>
+          <p class="lead" data-reveal>
+            Om AI som skal i drift, integrasjoner som skal henge sammen, eller bare et godt verktøy. Skriv en linje.
+          </p>
           <a class="mail" href="mailto:hei@kristoffer.dev" data-reveal data-vakt-event="contact" data-vakt-value="email">
             hei@kristoffer.dev
           </a>
@@ -331,9 +443,10 @@
               <a href="https://github.com/KristofferRisa" rel="me noopener" target="_blank" data-vakt-event="outbound" data-vakt-value="github">GitHub</a>
             </li>
             <li>
-              <a href="https://kristoffer.dev" rel="me noopener" target="_blank" data-vakt-event="outbound" data-vakt-value="blog">Blogg</a>
+              <a href="https://kristoffer.dev" rel="me noopener" target="_blank" data-vakt-event="outbound" data-vakt-value="blog">kristoffer.dev</a>
             </li>
           </ul>
+          <span class="sign" data-reveal aria-hidden="true">— Kristoffer</span>
         </div>
       </section>
     </main>
@@ -341,8 +454,27 @@
     <footer class="site-footer">
       <div class="wrap">
         <span>© <span data-year>2026</span> Kristoffer Risa</span>
+        <button class="kbd-hint" type="button" data-keys-open>Trykk <kbd>?</kbd> for snarveier</button>
         <span>Ingen informasjonskapsler. Anonym besøksstatistikk og feillogging.</span>
       </div>
     </footer>
+
+    <dialog class="keys" data-keys aria-labelledby="keys-title">
+      <header>
+        <h2 id="keys-title">Snarveier</h2>
+        <small><kbd>Esc</kbd> lukker</small>
+      </header>
+      <dl>
+        <dt><kbd>g</kbd><kbd>n</kbd></dt><dd>Nå</dd>
+        <dt><kbd>g</kbd><kbd>p</kbd></dt><dd>Person</dd>
+        <dt><kbd>g</kbd><kbd>e</kbd></dt><dd>Erfaring</dd>
+        <dt><kbd>g</kbd><kbd>s</kbd></dt><dd>Kompetanse</dd>
+        <dt><kbd>g</kbd><kbd>k</kbd></dt><dd>Kontakt</dd>
+        <dt><kbd>g</kbd><kbd>g</kbd> · <kbd>G</kbd></dt><dd>Til toppen · til bunnen</dd>
+        <dt><kbd>j</kbd> · <kbd>k</kbd></dt><dd>Rull ned · opp</dd>
+        <dt><kbd>p</kbd></dt><dd>Skriv ut CV</dd>
+        <dt><kbd>l</kbd></dt><dd>English</dd>
+      </dl>
+    </dialog>
   </body>
 </html>
